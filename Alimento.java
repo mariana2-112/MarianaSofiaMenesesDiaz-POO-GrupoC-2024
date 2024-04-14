@@ -9,4 +9,8 @@ public class Alimento extends Producto {
     public String obtenerInformacionConCaducidad() {
         return super.obtenerInformacion() + " Caducidad: " + caducidad;
     }
+
+    public String getNombreProducto() {
+        return super.getNombre();
+    }
 }

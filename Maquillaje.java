@@ -9,4 +9,8 @@ public class Maquillaje extends Producto {
     public String obtenerInformacionConColor() {
         return super.obtenerInformacion() + " Color: " + color;
     }
+
+    public String getNombreProducto() {
+        return super.getNombre();
+    }
 }

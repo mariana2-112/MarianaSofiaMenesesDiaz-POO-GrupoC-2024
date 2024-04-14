@@ -21,7 +21,7 @@ public class Tienda {
 
         Cliente cliente = new Cliente(id, nombre, direccion);
         clientes.add(cliente);
-        
+
         System.out.println("¡Cliente registrado con exito!");
     }
 
@@ -71,7 +71,7 @@ public class Tienda {
         return datos;
     }
 
-    //------------------------LIMPIEZA------------------------
+    // ------------------------LIMPIEZA------------------------
 
     public void registrarProductoLimpieza() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria limpieza ***");
@@ -90,7 +90,6 @@ public class Tienda {
 
         productosLimpieza.add(limpieza);
 
-        
     }
 
     public void consultarProductosLimpieza() {
@@ -101,12 +100,12 @@ public class Tienda {
     }
 
     public void añadirStockLimpieza() {
-        consultarProductosLimpieza(); 
+        consultarProductosLimpieza();
         System.out.print("Ingresa el nombre del producto de limpieza al que deseas añadir stock: ");
         String nombreProducto = scanner.nextLine();
         System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
         int cantidad = scanner.nextInt();
-    
+
         for (Limpieza producto : productosLimpieza) {
             if (producto.getNombreProducto().equals(nombreProducto)) {
                 producto.agregarStock(cantidad);
@@ -118,12 +117,12 @@ public class Tienda {
     }
 
     public void disminuirStockLimpieza() {
-        consultarProductosLimpieza(); 
+        consultarProductosLimpieza();
         System.out.print("Ingresa el nombre del producto de limpieza al que deseas eliminar stock: ");
         String nombreProducto = scanner.nextLine();
         System.out.print("Ingresa la cantidad de stock que deseas eliminar: ");
         int cantidad = scanner.nextInt();
-    
+
         for (Limpieza producto : productosLimpieza) {
             if (producto.getNombreProducto().equals(nombreProducto)) {
                 producto.eliminarStock(cantidad);
@@ -133,12 +132,9 @@ public class Tienda {
         }
         System.out.println("Producto no encontrado.");
     }
-    
 
+    // ------------------------ELECTRODOMESTICO------------------------
 
-
-    //------------------------ELECTRODOMESTICO------------------------
-   
     public void registrarProductoElectrodomestico() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria Electrodomestico ***");
 
@@ -156,9 +152,6 @@ public class Tienda {
 
         productosElectrodomestico.add(electrodomestico);
 
-        
-
-        
     }
 
     public void consultarProductosElectrodomestico() {
@@ -169,44 +162,104 @@ public class Tienda {
     }
 
     public void añadirStockElectrodomestico() {
-        consultarProductosElectrodomestico(); 
+        consultarProductosElectrodomestico();
         System.out.print("Ingresa el nombre del electrodomestico al que deseas añadir stock: ");
         String nombreProducto = scanner.nextLine();
         System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
         int cantidad = scanner.nextInt();
-    
+
         for (Electrodomestico producto : productosElectrodomestico) {
             if (producto.getNombreProducto().equals(nombreProducto)) {
                 producto.agregarStock(cantidad);
                 System.out.println("Stock añadido");
                 return;
+            }
+            System.out.println("Producto no encontrado.");
+        }
+    }
+
+    public void disminuirStockElectrodomestico() {
+        consultarProductosElectrodomestico();
+        System.out.print("Ingresa el nombre del electrodomestico al que deseas eliminar stock: ");
+        String nombreProducto = scanner.nextLine();
+        System.out.print("Ingresa la cantidad de stock que deseas eliminar: ");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
+
+        for (Electrodomestico producto : productosElectrodomestico) {
+            if (producto.getNombreProducto().equals(nombreProducto)) {
+                producto.eliminarStock(cantidad);
+                System.out.println("Stock eliminado");
+                return;
+            }
         }
         System.out.println("Producto no encontrado.");
     }
-}
-    
-public void disminuirStockElectrodomestico() {
-    consultarProductosElectrodomestico(); 
-    System.out.print("Ingresa el nombre del electrodomestico al que deseas eliminar stock: ");
-    String nombreProducto = scanner.nextLine();
-    System.out.print("Ingresa la cantidad de stock que deseas eliminar: ");
-    int cantidad = scanner.nextInt();
-    scanner.nextLine(); 
 
-    for (Electrodomestico producto : productosElectrodomestico) {
-        if (producto.getNombreProducto().equals(nombreProducto)) {
-            producto.eliminarStock(cantidad);
-            System.out.println("Stock eliminado");
-            return;
+    // ------------------------ALIMENTO------------------------
+
+    public void registrarProductosAlimento() {
+        System.out.println("\n *** Elegiste registrar un producto de la categoria Alimento ***");
+
+        ArrayList<String> datosUsuario = registrarDatosComun();
+        String nombre = datosUsuario.get(0);
+        double precio = Double.parseDouble(datosUsuario.get(1));
+        String fecha = datosUsuario.get(2);
+        int stock = Integer.parseInt(datosUsuario.get(3));
+
+        scanner.nextLine();
+        System.out.print("Ingresa la caducidad: ");
+        String caducidad = scanner.nextLine();
+
+        Alimento Alimento = new Alimento(nombre, precio, fecha, stock, caducidad);
+
+        productosAlimento.add(Alimento);
+
+    }
+
+    public void consultarProductosCaducidad() {
+        System.out.println("*** PRODUCTOS ALIMENTOS***");
+        for (Alimento producto : productosAlimento) {
+            System.out.println(producto.obtenerInformacionConCaducidad());
         }
     }
-    System.out.println("Producto no encontrado.");
-}
 
+    public void añadirStockAlimento() {
+        consultarProductosCaducidad();
+        System.out.print("Ingresa el nombre del aliemnto al que deseas añadir stock: ");
+        String nombreProducto = scanner.nextLine();
+        System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
+        int cantidad = scanner.nextInt();
 
+        for (Alimento producto : productosAlimento) {
+            if (producto.getNombreProducto().equals(nombreProducto)) {
+                producto.agregarStock(cantidad);
+                System.out.println("Stock añadido");
+                return;
+            }
+            System.out.println("Producto no encontrado.");
+        }
+    }
 
+    public void disminuirStockAlimento() {
+        consultarProductosCaducidad();
+        System.out.print("Ingresa el nombre del alimento al que deseas eliminar stock: ");
+        String nombreProducto = scanner.nextLine();
+        System.out.print("Ingresa la cantidad de stock que deseas eliminar: ");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
 
-    //------------------------MAQUILLAJE------------------------
+        for (Alimento producto : productosAlimento) {
+            if (producto.getNombreProducto().equals(nombreProducto)) {
+                producto.eliminarStock(cantidad);
+                System.out.println("Stock eliminado");
+                return;
+            }
+        }
+        System.out.println("Producto no encontrado.");
+    }
+
+    // ------------------------MAQUILLAJE------------------------
 
     public void registrarProductosMaquillaje() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria maquillaje ***");
@@ -233,34 +286,40 @@ public void disminuirStockElectrodomestico() {
         }
     }
 
+    public void añadirStockMaquillaje() {
+        consultarProductosMaquillaje();
+        System.out.print("Ingresa el nombre del maquillaje al que deseas añadir stock: ");
+        String nombreProducto = scanner.nextLine();
+        System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
+        int cantidad = scanner.nextInt();
 
-    //------------------------ALIMENTO------------------------
-
-
-    public void registrarProductosAlimento() {
-        System.out.println("\n *** Elegiste registrar un producto de la categoria Alimento ***");
-
-        ArrayList<String> datosUsuario = registrarDatosComun();
-        String nombre = datosUsuario.get(0);
-        double precio = Double.parseDouble(datosUsuario.get(1));
-        String fecha = datosUsuario.get(2);
-        int stock = Integer.parseInt(datosUsuario.get(3));
-
-        scanner.nextLine();
-        System.out.print("Ingresa la caducidad: ");
-        String caducidad = scanner.nextLine();
-
-        Alimento Alimento = new Alimento(nombre, precio, fecha, stock, caducidad);
-
-        productosAlimento.add(Alimento);
-
-        
-    }
-
-    public void consultarProductosCaducidad() {
-        System.out.println("*** PRODUCTOS ALIMENTOS***");
-        for (Alimento producto : productosAlimento) {
-            System.out.println(producto.obtenerInformacionConCaducidad());
+        for (Maquillaje producto : productosMaquillaje) {
+            if (producto.getNombreProducto().equals(nombreProducto)) {
+                producto.agregarStock(cantidad);
+                System.out.println("Stock añadido");
+                return;
+            }
+            System.out.println("Producto no encontrado.");
         }
     }
+
+    public void disminuirStockMaquillaje() {
+        consultarProductosMaquillaje();
+        System.out.print("Ingresa el nombre del maquillaje al que deseas eliminar stock: ");
+        String nombreProducto = scanner.nextLine();
+        System.out.print("Ingresa la cantidad de stock que deseas eliminar: ");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
+
+        for (Maquillaje producto : productosMaquillaje) {
+            if (producto.getNombreProducto().equals(nombreProducto)) {
+                producto.eliminarStock(cantidad);
+                System.out.println("Stock eliminado");
+                return;
+            }
+        }
+        System.out.println("Producto no encontrado.");
+    }
+
+    
 }

@@ -101,6 +101,12 @@ public class Sistema {
                         case 2:
                         tienda.añadirStockElectrodomestico();
                         break;
+                        case 3: 
+                        tienda.añadirStockAlimento();
+                        break;
+                        case 4:
+                        tienda.añadirStockMaquillaje();
+                        break;
                     
                         
                     }
@@ -120,6 +126,12 @@ public class Sistema {
                             break;
                         case 2: 
                         tienda.disminuirStockElectrodomestico();
+                        break;
+                        case 3:
+                        tienda.disminuirStockAlimento();
+                        break;
+                        case 4:
+                        tienda.disminuirStockMaquillaje();
                         break;
                     }
 
