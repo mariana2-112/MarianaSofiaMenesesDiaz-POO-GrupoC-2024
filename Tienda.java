@@ -109,8 +109,8 @@ public class Tienda {
     
         for (Limpieza producto : productosLimpieza) {
             if (producto.getNombreProducto().equals(nombreProducto)) {
-                producto.añadirStock(cantidad);
-                System.out.println("Stock añadido con éxito.");
+                producto.agregarStock(cantidad);
+                System.out.println("Stock añadido");
                 return;
             }
         }
@@ -127,7 +127,7 @@ public class Tienda {
         for (Limpieza producto : productosLimpieza) {
             if (producto.getNombreProducto().equals(nombreProducto)) {
                 producto.eliminarStock(cantidad);
-                System.out.println("Stock eliminado con éxito.");
+                System.out.println("Stock eliminado");
                 return;
             }
         }
@@ -157,6 +157,8 @@ public class Tienda {
         productosElectrodomestico.add(electrodomestico);
 
         
+
+        
     }
 
     public void consultarProductosElectrodomestico() {
@@ -165,6 +167,42 @@ public class Tienda {
             System.out.println(producto.obtenerInformacionConVoltaje());
         }
     }
+
+    public void añadirStockElectrodomestico() {
+        consultarProductosElectrodomestico(); 
+        System.out.print("Ingresa el nombre del electrodomestico al que deseas añadir stock: ");
+        String nombreProducto = scanner.nextLine();
+        System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
+        int cantidad = scanner.nextInt();
+    
+        for (Electrodomestico producto : productosElectrodomestico) {
+            if (producto.getNombreProducto().equals(nombreProducto)) {
+                producto.agregarStock(cantidad);
+                System.out.println("Stock añadido");
+                return;
+        }
+        System.out.println("Producto no encontrado.");
+    }
+}
+    
+public void disminuirStockElectrodomestico() {
+    consultarProductosElectrodomestico(); 
+    System.out.print("Ingresa el nombre del electrodomestico al que deseas eliminar stock: ");
+    String nombreProducto = scanner.nextLine();
+    System.out.print("Ingresa la cantidad de stock que deseas eliminar: ");
+    int cantidad = scanner.nextInt();
+    scanner.nextLine(); 
+
+    for (Electrodomestico producto : productosElectrodomestico) {
+        if (producto.getNombreProducto().equals(nombreProducto)) {
+            producto.eliminarStock(cantidad);
+            System.out.println("Stock eliminado");
+            return;
+        }
+    }
+    System.out.println("Producto no encontrado.");
+}
+
 
 
 

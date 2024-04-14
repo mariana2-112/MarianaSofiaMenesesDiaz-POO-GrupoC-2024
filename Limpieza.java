@@ -11,14 +11,8 @@ public class Limpieza extends Producto {
         return super.obtenerInformacion() + " Marca: " + marca;
     }
 
-    public void añadirStock(int cantidad) {
-        super.agregarStock(cantidad); 
-    }
-
     public String getNombreProducto() {
         return super.getNombre();  
     }
-    
-
     
 }

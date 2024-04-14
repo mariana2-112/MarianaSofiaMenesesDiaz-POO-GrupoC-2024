@@ -10,4 +10,8 @@ public class Electrodomestico extends Producto {
     public String obtenerInformacionConVoltaje() {
         return super.obtenerInformacion() + " Voltaje: " + voltaje;
     }
+
+    public String getNombreProducto() {
+        return super.getNombre();  
+    }
 }

@@ -51,11 +51,11 @@ public class Sistema {
             opcion = scanner.nextInt();
 
             switch (opcion) {
-                case 1:
+                case 1: // Agregar cliente
                     tienda.registrarCliente();
 
                     break;
-                case 2:
+                case 2: //Agregar producto
                     System.out.println("Ingresa el tipo de producto que deseas agregar: ");
                     System.out.println("1.- Limpieza");
                     System.out.println("2.- Electrodomesticos");
@@ -86,7 +86,7 @@ public class Sistema {
 
                     break;
 
-                case 3: 
+                case 3: //Añadir a stock
                 System.out.println("Ingresa el tipo de producto al que le deseas añadir stock: ");
                     System.out.println("1.- Limpieza");
                     System.out.println("2.- Electrodomesticos");
@@ -97,14 +97,16 @@ public class Sistema {
                     switch (opcionProductoAñadirStock) {
                         case 1:
                         tienda.añadirStockLimpieza();
-
                             break;
+                        case 2:
+                        tienda.añadirStockElectrodomestico();
+                        break;
                     
                         
                     }
 
                 break;
-                case 4:
+                case 4: //Disminuir Stock
                 System.out.println("Ingresa el tipo de producto al que le deseas eliminar stock: ");
                     System.out.println("1.- Limpieza");
                     System.out.println("2.- Electrodomesticos");
@@ -115,10 +117,10 @@ public class Sistema {
                     switch (opcionProductoEliminarStock) {
                         case 1:
                         tienda.disminuirStockLimpieza();
-
                             break;
-                    
-                        
+                        case 2: 
+                        tienda.disminuirStockElectrodomestico();
+                        break;
                     }
 
                 case 5:
