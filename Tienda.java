@@ -71,6 +71,8 @@ public class Tienda {
         return datos;
     }
 
+    //------------------------LIMPIEZA------------------------
+
     public void registrarProductoLimpieza() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria limpieza ***");
 
@@ -98,6 +100,44 @@ public class Tienda {
         }
     }
 
+    public void añadirStockLimpieza() {
+        consultarProductosLimpieza(); 
+        System.out.print("Ingresa el nombre del producto de limpieza al que deseas añadir stock: ");
+        String nombreProducto = scanner.nextLine();
+        System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
+        int cantidad = scanner.nextInt();
+    
+        for (Limpieza producto : productosLimpieza) {
+            if (producto.getNombreProducto().equals(nombreProducto)) {
+                producto.añadirStock(cantidad);
+                System.out.println("Stock añadido con éxito.");
+                return;
+            }
+        }
+        System.out.println("Producto no encontrado.");
+    }
+
+    public void disminuirStockLimpieza() {
+        consultarProductosLimpieza(); 
+        System.out.print("Ingresa el nombre del producto de limpieza al que deseas eliminar stock: ");
+        String nombreProducto = scanner.nextLine();
+        System.out.print("Ingresa la cantidad de stock que deseas eliminar: ");
+        int cantidad = scanner.nextInt();
+    
+        for (Limpieza producto : productosLimpieza) {
+            if (producto.getNombreProducto().equals(nombreProducto)) {
+                producto.eliminarStock(cantidad);
+                System.out.println("Stock eliminado con éxito.");
+                return;
+            }
+        }
+        System.out.println("Producto no encontrado.");
+    }
+    
+
+
+
+    //------------------------ELECTRODOMESTICO------------------------
    
     public void registrarProductoElectrodomestico() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria Electrodomestico ***");
@@ -126,6 +166,10 @@ public class Tienda {
         }
     }
 
+
+
+    //------------------------MAQUILLAJE------------------------
+
     public void registrarProductosMaquillaje() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria maquillaje ***");
 
@@ -150,6 +194,10 @@ public class Tienda {
             System.out.println(producto.obtenerInformacionConColor());
         }
     }
+
+
+    //------------------------ALIMENTO------------------------
+
 
     public void registrarProductosAlimento() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria Alimento ***");

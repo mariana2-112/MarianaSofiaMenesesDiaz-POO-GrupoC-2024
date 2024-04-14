@@ -40,4 +40,9 @@ public class Producto {
     public String obtenerInformacion(){
         return String.format("Nombre: %s, precio: %f, fecha importacion: %s, stock: %d, numero de serie: %d", nombre, precio, fechaImportacion, stock, numeroSerie);
     }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+    
 }

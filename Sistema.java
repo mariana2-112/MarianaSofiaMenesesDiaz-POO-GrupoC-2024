@@ -87,8 +87,40 @@ public class Sistema {
                     break;
 
                 case 3: 
-                
+                System.out.println("Ingresa el tipo de producto al que le deseas añadir stock: ");
+                    System.out.println("1.- Limpieza");
+                    System.out.println("2.- Electrodomesticos");
+                    System.out.println("3.- Alimento");
+                    System.out.println("4.- Maquillaje");
+                    int opcionProductoAñadirStock = scanner.nextInt();
+
+                    switch (opcionProductoAñadirStock) {
+                        case 1:
+                        tienda.añadirStockLimpieza();
+
+                            break;
+                    
+                        
+                    }
+
                 break;
+                case 4:
+                System.out.println("Ingresa el tipo de producto al que le deseas eliminar stock: ");
+                    System.out.println("1.- Limpieza");
+                    System.out.println("2.- Electrodomesticos");
+                    System.out.println("3.- Alimento");
+                    System.out.println("4.- Maquillaje");
+                    int opcionProductoEliminarStock = scanner.nextInt();
+
+                    switch (opcionProductoEliminarStock) {
+                        case 1:
+                        tienda.disminuirStockLimpieza();
+
+                            break;
+                    
+                        
+                    }
+
                 case 5:
                     tienda.consultarClientes();
                     break;
