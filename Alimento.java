@@ -5,4 +5,8 @@ public class Alimento extends Producto {
         super(nombre, precio, fechaImportacion, stock);
         this.caducidad = caducidad;
     }
+
+    public String obtenerInformacionConCaducidad() {
+        return super.obtenerInformacion() + " Caducidad: " + caducidad;
+    }
 }

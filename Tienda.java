@@ -97,4 +97,84 @@ public class Tienda {
             System.out.println(producto.obtenerInformacionConMarca());
         }
     }
+
+   
+    public void registrarProductoElectrodomestico() {
+        System.out.println("\n *** Elegiste registrar un producto de la categoria Electrodomestico ***");
+
+        ArrayList<String> datosUsuario = registrarDatosComun();
+        String nombre = datosUsuario.get(0);
+        double precio = Double.parseDouble(datosUsuario.get(1));
+        String fecha = datosUsuario.get(2);
+        int stock = Integer.parseInt(datosUsuario.get(3));
+
+        scanner.nextLine();
+        System.out.print("Ingresa el voltaje: ");
+        String voltaje = scanner.nextLine();
+
+        Electrodomestico electrodomestico = new Electrodomestico(nombre, precio, fecha, stock, voltaje);
+
+        productosElectrodomestico.add(electrodomestico);
+
+        
+    }
+
+    public void consultarProductosElectrodomestico() {
+        System.out.println("*** PRODUCTOS ELECTRODOMESTICO***");
+        for (Electrodomestico producto : productosElectrodomestico) {
+            System.out.println(producto.obtenerInformacionConVoltaje());
+        }
+    }
+
+    public void registrarProductosMaquillaje() {
+        System.out.println("\n *** Elegiste registrar un producto de la categoria maquillaje ***");
+
+        ArrayList<String> datosUsuario = registrarDatosComun();
+        String nombre = datosUsuario.get(0);
+        double precio = Double.parseDouble(datosUsuario.get(1));
+        String fecha = datosUsuario.get(2);
+        int stock = Integer.parseInt(datosUsuario.get(3));
+
+        scanner.nextLine();
+        System.out.print("Ingresa el color: ");
+        String color = scanner.nextLine();
+
+        Maquillaje maquillaje = new Maquillaje(nombre, precio, fecha, stock, color);
+
+        productosMaquillaje.add(maquillaje);
+    }
+
+    public void consultarProductosMaquillaje() {
+        System.out.println("*** PRODUCTOS MAQUILLAJE***");
+        for (Maquillaje producto : productosMaquillaje) {
+            System.out.println(producto.obtenerInformacionConColor());
+        }
+    }
+
+    public void registrarProductosAlimento() {
+        System.out.println("\n *** Elegiste registrar un producto de la categoria Alimento ***");
+
+        ArrayList<String> datosUsuario = registrarDatosComun();
+        String nombre = datosUsuario.get(0);
+        double precio = Double.parseDouble(datosUsuario.get(1));
+        String fecha = datosUsuario.get(2);
+        int stock = Integer.parseInt(datosUsuario.get(3));
+
+        scanner.nextLine();
+        System.out.print("Ingresa la caducidad: ");
+        String caducidad = scanner.nextLine();
+
+        Alimento Alimento = new Alimento(nombre, precio, fecha, stock, caducidad);
+
+        productosAlimento.add(Alimento);
+
+        
+    }
+
+    public void consultarProductosCaducidad() {
+        System.out.println("*** PRODUCTOS ALIMENTOS***");
+        for (Alimento producto : productosAlimento) {
+            System.out.println(producto.obtenerInformacionConCaducidad());
+        }
+    }
 }

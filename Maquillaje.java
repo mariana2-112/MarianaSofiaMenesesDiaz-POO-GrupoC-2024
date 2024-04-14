@@ -5,4 +5,8 @@ public class Maquillaje extends Producto {
         super(nombre, precio, fechaImportacion, stock);
         this.color = color;
     }
+
+    public String obtenerInformacionConColor() {
+        return super.obtenerInformacion() + " Color: " + color;
+    }
 }

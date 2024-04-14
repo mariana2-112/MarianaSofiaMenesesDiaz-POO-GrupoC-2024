@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 public class Sistema {
-    private final String CONTRASEÑA = "H1/m";
+    private final String CONTRASEÑA = "123";
     private Scanner scanner = new Scanner(System.in);
     private Tienda tienda = new Tienda();
 
@@ -69,12 +69,15 @@ public class Sistema {
 
                             break;
                         case 2:
+                            tienda.registrarProductoElectrodomestico();
                             break;
 
                         case 3:
+                        tienda.registrarProductosAlimento();
                             break;
 
                         case 4:
+                            tienda.registrarProductosMaquillaje();
                             break;
 
                         default:
@@ -83,6 +86,9 @@ public class Sistema {
 
                     break;
 
+                case 3: 
+                
+                break;
                 case 5:
                     tienda.consultarClientes();
                     break;
@@ -99,6 +105,15 @@ public class Sistema {
                     switch (opcionProductoConsulta) {
                         case 1:
                             tienda.consultarProductosLimpieza();
+                            break;
+                        case 2:
+                            tienda.consultarProductosElectrodomestico();
+                            break;
+                        case 3: 
+                        tienda.consultarProductosCaducidad();
+                        break; 
+                        case 4:
+                            tienda.consultarProductosMaquillaje();
                             break;
 
                     }

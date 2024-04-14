@@ -5,7 +5,7 @@ public class Cliente {
 
     private String direccion;
 
-    public Cliente(int i, String nombre, String direccion) {
+    public Cliente(int id, String nombre, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;

@@ -8,6 +8,8 @@ public class Limpieza extends Producto {
     }
 
     public String obtenerInformacionConMarca() {
-        return super.obtenerInformacion() + "Marca: " + marca;
+        return super.obtenerInformacion() + " Marca: " + marca;
     }
+
+    
 }
