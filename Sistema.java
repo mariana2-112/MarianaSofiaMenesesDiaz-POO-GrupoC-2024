@@ -173,6 +173,7 @@ public class Sistema {
                     break;
                     case 9: //Consultar Compras
                     //Producto vendido, Precio del procuto,  comprador/cliente, cuando se realizo la compra
+                    tienda.consultarCompras();
                     break;
                     case 10: //Eliminar productos y clientes
                     break;

@@ -30,4 +30,14 @@ public class Compra {
         }
         System.out.println("Total: $" + total);
     }
+
+    public void mostrarDetalleVenta() {
+        System.out.println("Cliente: " + cliente.getNombre());
+        for (int i = 0; i < productos.size(); i++) {
+            System.out.println("Producto: " + productos.get(i).getNombre() + ", Cantidad: " + cantidades.get(i));
+        }
+        System.out.println("Total: $" + total);
+        System.out.println("Fecha de compra: " + java.time.LocalDate.now());
+    }
+    
 }

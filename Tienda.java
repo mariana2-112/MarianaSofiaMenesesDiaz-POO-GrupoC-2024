@@ -325,56 +325,60 @@ public class Tienda {
     public void realizarCompra() {
         System.out.println("Ingresa el nombre del cliente: ");
         String nombreCliente = scanner.nextLine();
-    
+
         Cliente cliente = buscarClientePorNombre(nombreCliente);
         if (cliente == null) {
             System.out.println("Cliente no registrado. Debes registrarte antes de realizar una compra.");
             return;
         }
-    
+
         consultarProductos();
-    
+
         System.out.println("Ingresa el nombre del producto que deseas comprar: ");
         String nombreProducto = scanner.nextLine();
-    
+
         Producto producto = buscarProductoPorNombre(nombreProducto);
-    
+
         if (producto == null) {
             System.out.println("Producto no encontrado.");
             return;
         }
-    
+
         System.out.println("Ingresa la cantidad que deseas comprar: ");
         int cantidad = scanner.nextInt();
         scanner.nextLine();
-    
+
         if (producto.getStock() < cantidad) {
             System.out.println("No hay suficiente stock disponible.");
             return;
         }
-    
+
         Compra compra = new Compra(cliente);
         compra.agregarProducto(producto, cantidad);
         producto.eliminarStock(cantidad);
-    
+
         System.out.println("Compra realizada con éxito:");
         compra.mostrarDetalleCompra();
+        registrarCompra(compra);
     }
-    
+
     private Producto buscarProductoPorNombre(String nombre) {
         Producto producto = buscarProductoPorNombreLimpieza(nombre);
-        if (producto != null) return producto;
-    
+        if (producto != null)
+            return producto;
+
         producto = buscarProductoPorNombreElectrodomestico(nombre);
-        if (producto != null) return producto;
-    
+        if (producto != null)
+            return producto;
+
         producto = buscarProductoPorNombreAlimento(nombre);
-        if (producto != null) return producto;
-    
+        if (producto != null)
+            return producto;
+
         producto = buscarProductoPorNombreMaquillaje(nombre);
         return producto;
     }
-    
+
     private Limpieza buscarProductoPorNombreLimpieza(String nombre) {
         for (Limpieza producto : productosLimpieza) {
             if (producto.getNombre().equalsIgnoreCase(nombre)) {
@@ -383,7 +387,7 @@ public class Tienda {
         }
         return null;
     }
-    
+
     private Electrodomestico buscarProductoPorNombreElectrodomestico(String nombre) {
         for (Electrodomestico producto : productosElectrodomestico) {
             if (producto.getNombre().equalsIgnoreCase(nombre)) {
@@ -392,7 +396,7 @@ public class Tienda {
         }
         return null;
     }
-    
+
     private Alimento buscarProductoPorNombreAlimento(String nombre) {
         for (Alimento producto : productosAlimento) {
             if (producto.getNombre().equalsIgnoreCase(nombre)) {
@@ -401,7 +405,7 @@ public class Tienda {
         }
         return null;
     }
-    
+
     private Maquillaje buscarProductoPorNombreMaquillaje(String nombre) {
         for (Maquillaje producto : productosMaquillaje) {
             if (producto.getNombre().equalsIgnoreCase(nombre)) {
@@ -410,4 +414,20 @@ public class Tienda {
         }
         return null;
     }
+
+    private ArrayList<Compra> comprasRealizadas = new ArrayList<>();
+
+    public void registrarCompra(Compra compra) {
+        comprasRealizadas.add(compra);
+        System.out.println("Compra registrada con éxito.");
+    }
+
+    public void consultarCompras() {
+        System.out.println("*** COMPRAS REALIZADAS ***");
+        for (Compra compra : comprasRealizadas) {
+            compra.mostrarDetalleVenta();
+            System.out.println("--------------");
+        }
+    }
+
 }
