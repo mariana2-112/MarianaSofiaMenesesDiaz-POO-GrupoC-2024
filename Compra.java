@@ -40,4 +40,12 @@ public class Compra {
         System.out.println("Fecha de compra: " + java.time.LocalDate.now());
     }
     
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    // Método para obtener los productos de la compra
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
 }

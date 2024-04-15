@@ -429,5 +429,74 @@ public class Tienda {
             System.out.println("--------------");
         }
     }
+    
+
+    public void eliminarCliente() {
+        consultarClientes();
+        System.out.print("Ingresa el nombre del cliente que deseas eliminar: ");
+        String nombreCliente = scanner.nextLine();
+    
+        Cliente cliente = buscarClientePorNombre(nombreCliente);
+        if (cliente == null) {
+            System.out.println("Cliente no registrado, regístrelo antes.");
+        }else if (tieneComprasAsociadas(cliente)) {
+            System.out.println("El cliente tiene compras asociadas y no puede ser eliminado.");
+        } else {
+            
+        clientes.remove(cliente);
+        System.out.println("Cliente eliminado con éxito.");
+
+        }
+        return;
+    
+    }
+    
+    public void eliminarProducto() {
+        consultarProductos();
+        System.out.print("Ingresa el nombre del producto que deseas eliminar: ");
+        String nombreProducto = scanner.nextLine();
+    
+        Producto producto = buscarProductoPorNombre(nombreProducto);
+        if (producto == null) {
+            System.out.println("Producto no registrado, regístrelo antes.");
+            return;  // Retorna al menú principal
+        }
+    
+        if (tieneComprasAsociadas(producto)) {
+            System.out.println("El producto tiene compras asociadas y no puede ser eliminado.");
+            return;  // Retorna al menú principal
+        }
+    
+        if (producto instanceof Limpieza) {
+            productosLimpieza.remove(producto);
+        } else if (producto instanceof Electrodomestico) {
+            productosElectrodomestico.remove(producto);
+        } else if (producto instanceof Alimento) {
+            productosAlimento.remove(producto);
+        } else if (producto instanceof Maquillaje) {
+            productosMaquillaje.remove(producto);
+        }
+        System.out.println("Producto eliminado con éxito.");
+    }
+    
+    
+    private boolean tieneComprasAsociadas(Cliente cliente) {
+        for (Compra compra : comprasRealizadas) {
+            if (compra.getCliente().equals(cliente)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean tieneComprasAsociadas(Producto producto) {
+        for (Compra compra : comprasRealizadas) {
+            if (compra.getProductos().contains(producto)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
 
 }

@@ -32,6 +32,7 @@ public class Sistema {
     private void mostrarMenuSistema() {
 
         int opcion = 0;
+        
 
         do {
             System.out.println("ELIGE UNA OPCION PARA CONTINUAR");
@@ -45,7 +46,8 @@ public class Sistema {
             System.out.println("7.- Listar Productos");
             System.out.println("8.- Comprar");
             System.out.println("9.- Consultar compras");
-            System.out.println("10.- Salir");
+            System.out.println("10.- Eliminar productos y clientes");
+            System.out.println("11. Salir");
 
             System.out.print("Ingresa la opcion: ");
             opcion = scanner.nextInt();
@@ -55,7 +57,7 @@ public class Sistema {
                     tienda.registrarCliente();
 
                     break;
-                case 2: //Agregar producto
+                case 2: // Agregar producto
                     System.out.println("Ingresa el tipo de producto que deseas agregar: ");
                     System.out.println("1.- Limpieza");
                     System.out.println("2.- Electrodomesticos");
@@ -73,7 +75,7 @@ public class Sistema {
                             break;
 
                         case 3:
-                        tienda.registrarProductosAlimento();
+                            tienda.registrarProductosAlimento();
                             break;
 
                         case 4:
@@ -86,8 +88,8 @@ public class Sistema {
 
                     break;
 
-                case 3: //Añadir a stock
-                System.out.println("Ingresa el tipo de producto al que le deseas añadir stock: ");
+                case 3: // Añadir a stock
+                    System.out.println("Ingresa el tipo de producto al que le deseas añadir stock: ");
                     System.out.println("1.- Limpieza");
                     System.out.println("2.- Electrodomesticos");
                     System.out.println("3.- Alimento");
@@ -96,24 +98,23 @@ public class Sistema {
 
                     switch (opcionProductoAñadirStock) {
                         case 1:
-                        tienda.añadirStockLimpieza();
+                            tienda.añadirStockLimpieza();
                             break;
                         case 2:
-                        tienda.añadirStockElectrodomestico();
-                        break;
-                        case 3: 
-                        tienda.añadirStockAlimento();
-                        break;
+                            tienda.añadirStockElectrodomestico();
+                            break;
+                        case 3:
+                            tienda.añadirStockAlimento();
+                            break;
                         case 4:
-                        tienda.añadirStockMaquillaje();
-                        break;
-                    
-                        
+                            tienda.añadirStockMaquillaje();
+                            break;
+
                     }
 
-                break;
-                case 4: //Disminuir Stock
-                System.out.println("Ingresa el tipo de producto al que le deseas eliminar stock: ");
+                    break;
+                case 4: // Disminuir Stock
+                    System.out.println("Ingresa el tipo de producto al que le deseas eliminar stock: ");
                     System.out.println("1.- Limpieza");
                     System.out.println("2.- Electrodomesticos");
                     System.out.println("3.- Alimento");
@@ -122,20 +123,20 @@ public class Sistema {
 
                     switch (opcionProductoEliminarStock) {
                         case 1:
-                        tienda.disminuirStockLimpieza();
+                            tienda.disminuirStockLimpieza();
                             break;
-                        case 2: 
-                        tienda.disminuirStockElectrodomestico();
-                        break;
+                        case 2:
+                            tienda.disminuirStockElectrodomestico();
+                            break;
                         case 3:
-                        tienda.disminuirStockAlimento();
-                        break;
+                            tienda.disminuirStockAlimento();
+                            break;
                         case 4:
-                        tienda.disminuirStockMaquillaje();
-                        break;
+                            tienda.disminuirStockMaquillaje();
+                            break;
                     }
 
-                case 5: //Listar clientes
+                case 5: // Listar clientes
                     tienda.consultarClientes();
                     break;
                 case 6:
@@ -155,9 +156,9 @@ public class Sistema {
                         case 2:
                             tienda.consultarProductosElectrodomestico();
                             break;
-                        case 3: 
-                        tienda.consultarProductosCaducidad();
-                        break; 
+                        case 3:
+                            tienda.consultarProductosCaducidad();
+                            break;
                         case 4:
                             tienda.consultarProductosMaquillaje();
                             break;
@@ -165,27 +166,42 @@ public class Sistema {
                     }
 
                     break;
-                    case 7:
+                case 7:
                     tienda.consultarProductos();
                     break;
-                    case 8: //Comprar
+                case 8: // Comprar
                     tienda.realizarCompra();
                     break;
-                    case 9: //Consultar Compras
-                    //Producto vendido, Precio del procuto,  comprador/cliente, cuando se realizo la compra
+                case 9: // Consultar compras
                     tienda.consultarCompras();
                     break;
-                    case 10: //Eliminar productos y clientes
-                    break;
-                    case 11: 
-                    break;
-                    default:
-                    System.out.println("INGRESE UNA OPCIÓN VALIDA");
+                case 10: // Eliminar productos y clientes
+                    System.out.println("ELIMINAR OPCIONES");
+                    System.out.println("1.- Eliminar cliente");
+                    System.out.println("2.- Eliminar producto");
+                    System.out.println("3.- Regresar al menú principal");
+                    int opcionEliminar = scanner.nextInt();
 
-                    
+                    switch (opcionEliminar) {
+                        case 1:
+                            tienda.eliminarCliente();
+                            break;
+                        case 2:
+                            tienda.eliminarProducto();
+                            break;
+                        case 3:
+                            break;
+                    }
+                    mostrarMenuSistema();
+                    return;
+                case 11:
+                    System.out.println("Saliendo");
+                    break;
+                default:
+                    System.out.println("INGRESE UNA OPCIÓN VALIDA");
 
             }
 
-        } while (opcion != 10);
+        } while (opcion != 11);
     }
 }
