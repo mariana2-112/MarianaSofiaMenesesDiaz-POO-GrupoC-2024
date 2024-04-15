@@ -43,8 +43,8 @@ public class Sistema {
             System.out.println("5.- Listar clientes");
             System.out.println("6.- Consultar productos por categoria");
             System.out.println("7.- Listar Productos");
-            System.out.println("8.- Consultar compras");
-            System.out.println("9.- Consultar total de productos y clientes");
+            System.out.println("8.- Comprar");
+            System.out.println("9.- Consultar compras");
             System.out.println("10.- Salir");
 
             System.out.print("Ingresa la opcion: ");
@@ -169,11 +169,14 @@ public class Sistema {
                     tienda.consultarProductos();
                     break;
                     case 8: //Comprar
+                    tienda.realizarCompra();
                     break;
                     case 9: //Consultar Compras
                     //Producto vendido, Precio del procuto,  comprador/cliente, cuando se realizo la compra
                     break;
                     case 10: //Eliminar productos y clientes
+                    break;
+                    case 11: 
                     break;
                     default:
                     System.out.println("INGRESE UNA OPCIÓN VALIDA");

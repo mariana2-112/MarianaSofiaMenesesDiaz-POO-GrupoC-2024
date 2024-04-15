@@ -15,8 +15,16 @@ public class Cliente {
         return id;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+
     public String obtenerInformacion(){
         return String.format("Id: %d Nombre: %s y direccion: %s", id, nombre, direccion);
+    }
+    public boolean esNombreIgual(String nombre) {
+        return this.nombre.equalsIgnoreCase(nombre);
     }
 
 }

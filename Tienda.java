@@ -3,14 +3,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Tienda {
-    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-    private ArrayList<Maquillaje> productosMaquillaje = new ArrayList<Maquillaje>();
-    private ArrayList<Limpieza> productosLimpieza = new ArrayList<Limpieza>();
-    private ArrayList<Alimento> productosAlimento = new ArrayList<Alimento>();
-    private ArrayList<Electrodomestico> productosElectrodomestico = new ArrayList<Electrodomestico>();
+    private ArrayList<Cliente> clientes = new ArrayList<>();
+    private ArrayList<Maquillaje> productosMaquillaje = new ArrayList<>();
+    private ArrayList<Limpieza> productosLimpieza = new ArrayList<>();
+    private ArrayList<Alimento> productosAlimento = new ArrayList<>();
+    private ArrayList<Electrodomestico> productosElectrodomestico = new ArrayList<>();
     private Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
-    private Scanner leer = new Scanner(System.in);
 
     public void registrarCliente() {
         int id = validarIdCliente();
@@ -22,56 +21,54 @@ public class Tienda {
         Cliente cliente = new Cliente(id, nombre, direccion);
         clientes.add(cliente);
 
-        System.out.println("¡Cliente registrado con exito!");
+        System.out.println("¡Cliente registrado con éxito!");
     }
 
     public void consultarClientes() {
-        System.out.println("¨*** CLIENTES ***");
+        System.out.println("*** CLIENTES ***");
         for (Cliente cliente : clientes) {
             System.out.println(cliente.obtenerInformacion());
         }
     }
 
     public int validarIdCliente() {
-        boolean idValido = true;
-        int id = random.nextInt(1000) + 1;
-
+        boolean idValido;
+        int id;
         do {
+            idValido = true;
+            id = random.nextInt(1000) + 1;
             for (Cliente cliente : clientes) {
                 if (id == cliente.getId()) {
                     idValido = false;
-                    id = random.nextInt(1000) + 1;
+                    break;
                 }
             }
-
         } while (!idValido);
-
         return id;
     }
 
     public ArrayList<String> registrarDatosComun() {
-        ArrayList<String> datos = new ArrayList<String>();
+        ArrayList<String> datos = new ArrayList<>();
         System.out.print("Ingresa un nombre: ");
         String nombre = scanner.nextLine();
         datos.add(nombre);
 
         System.out.print("Ingresa el precio: ");
         double precio = scanner.nextDouble();
+        scanner.nextLine();
         datos.add(String.valueOf(precio));
 
-        scanner.nextLine();
         System.out.print("Ingresa la fecha de importacion: ");
         String fecha = scanner.nextLine();
         datos.add(fecha);
 
         System.out.print("Ingresa el stock del producto: ");
-        int Stock = scanner.nextInt();
-        datos.add(String.valueOf(Stock));
+        int stock = scanner.nextInt();
+        scanner.nextLine();
+        datos.add(String.valueOf(stock));
 
         return datos;
     }
-
-    // ------------------------LIMPIEZA------------------------
 
     public void registrarProductoLimpieza() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria limpieza ***");
@@ -82,14 +79,11 @@ public class Tienda {
         String fecha = datosUsuario.get(2);
         int stock = Integer.parseInt(datosUsuario.get(3));
 
-        scanner.nextLine();
         System.out.print("Ingresa la marca: ");
         String marca = scanner.nextLine();
 
         Limpieza limpieza = new Limpieza(nombre, precio, fecha, stock, marca);
-
         productosLimpieza.add(limpieza);
-
     }
 
     public void consultarProductosLimpieza() {
@@ -105,9 +99,10 @@ public class Tienda {
         String nombreProducto = scanner.nextLine();
         System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
         int cantidad = scanner.nextInt();
+        scanner.nextLine();
 
         for (Limpieza producto : productosLimpieza) {
-            if (producto.getNombreProducto().equals(nombreProducto)) {
+            if (producto.getNombre().equals(nombreProducto)) {
                 producto.agregarStock(cantidad);
                 System.out.println("Stock añadido");
                 return;
@@ -122,9 +117,10 @@ public class Tienda {
         String nombreProducto = scanner.nextLine();
         System.out.print("Ingresa la cantidad de stock que deseas eliminar: ");
         int cantidad = scanner.nextInt();
+        scanner.nextLine();
 
         for (Limpieza producto : productosLimpieza) {
-            if (producto.getNombreProducto().equals(nombreProducto)) {
+            if (producto.getNombre().equals(nombreProducto)) {
                 producto.eliminarStock(cantidad);
                 System.out.println("Stock eliminado");
                 return;
@@ -132,8 +128,6 @@ public class Tienda {
         }
         System.out.println("Producto no encontrado.");
     }
-
-    // ------------------------ELECTRODOMESTICO------------------------
 
     public void registrarProductoElectrodomestico() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria Electrodomestico ***");
@@ -144,14 +138,11 @@ public class Tienda {
         String fecha = datosUsuario.get(2);
         int stock = Integer.parseInt(datosUsuario.get(3));
 
-        scanner.nextLine();
         System.out.print("Ingresa el voltaje: ");
         String voltaje = scanner.nextLine();
 
         Electrodomestico electrodomestico = new Electrodomestico(nombre, precio, fecha, stock, voltaje);
-
         productosElectrodomestico.add(electrodomestico);
-
     }
 
     public void consultarProductosElectrodomestico() {
@@ -167,15 +158,16 @@ public class Tienda {
         String nombreProducto = scanner.nextLine();
         System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
         int cantidad = scanner.nextInt();
+        scanner.nextLine();
 
         for (Electrodomestico producto : productosElectrodomestico) {
-            if (producto.getNombreProducto().equals(nombreProducto)) {
+            if (producto.getNombre().equals(nombreProducto)) {
                 producto.agregarStock(cantidad);
                 System.out.println("Stock añadido");
                 return;
             }
-            System.out.println("Producto no encontrado.");
         }
+        System.out.println("Producto no encontrado.");
     }
 
     public void disminuirStockElectrodomestico() {
@@ -187,7 +179,7 @@ public class Tienda {
         scanner.nextLine();
 
         for (Electrodomestico producto : productosElectrodomestico) {
-            if (producto.getNombreProducto().equals(nombreProducto)) {
+            if (producto.getNombre().equals(nombreProducto)) {
                 producto.eliminarStock(cantidad);
                 System.out.println("Stock eliminado");
                 return;
@@ -195,8 +187,6 @@ public class Tienda {
         }
         System.out.println("Producto no encontrado.");
     }
-
-    // ------------------------ALIMENTO------------------------
 
     public void registrarProductosAlimento() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria Alimento ***");
@@ -207,14 +197,11 @@ public class Tienda {
         String fecha = datosUsuario.get(2);
         int stock = Integer.parseInt(datosUsuario.get(3));
 
-        scanner.nextLine();
         System.out.print("Ingresa la caducidad: ");
         String caducidad = scanner.nextLine();
 
-        Alimento Alimento = new Alimento(nombre, precio, fecha, stock, caducidad);
-
-        productosAlimento.add(Alimento);
-
+        Alimento alimento = new Alimento(nombre, precio, fecha, stock, caducidad);
+        productosAlimento.add(alimento);
     }
 
     public void consultarProductosCaducidad() {
@@ -226,19 +213,20 @@ public class Tienda {
 
     public void añadirStockAlimento() {
         consultarProductosCaducidad();
-        System.out.print("Ingresa el nombre del aliemnto al que deseas añadir stock: ");
+        System.out.print("Ingresa el nombre del alimento al que deseas añadir stock: ");
         String nombreProducto = scanner.nextLine();
         System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
         int cantidad = scanner.nextInt();
+        scanner.nextLine();
 
         for (Alimento producto : productosAlimento) {
-            if (producto.getNombreProducto().equals(nombreProducto)) {
+            if (producto.getNombre().equals(nombreProducto)) {
                 producto.agregarStock(cantidad);
                 System.out.println("Stock añadido");
                 return;
             }
-            System.out.println("Producto no encontrado.");
         }
+        System.out.println("Producto no encontrado.");
     }
 
     public void disminuirStockAlimento() {
@@ -250,7 +238,7 @@ public class Tienda {
         scanner.nextLine();
 
         for (Alimento producto : productosAlimento) {
-            if (producto.getNombreProducto().equals(nombreProducto)) {
+            if (producto.getNombre().equals(nombreProducto)) {
                 producto.eliminarStock(cantidad);
                 System.out.println("Stock eliminado");
                 return;
@@ -258,8 +246,6 @@ public class Tienda {
         }
         System.out.println("Producto no encontrado.");
     }
-
-    // ------------------------MAQUILLAJE------------------------
 
     public void registrarProductosMaquillaje() {
         System.out.println("\n *** Elegiste registrar un producto de la categoria maquillaje ***");
@@ -270,12 +256,10 @@ public class Tienda {
         String fecha = datosUsuario.get(2);
         int stock = Integer.parseInt(datosUsuario.get(3));
 
-        scanner.nextLine();
         System.out.print("Ingresa el color: ");
         String color = scanner.nextLine();
 
         Maquillaje maquillaje = new Maquillaje(nombre, precio, fecha, stock, color);
-
         productosMaquillaje.add(maquillaje);
     }
 
@@ -292,15 +276,16 @@ public class Tienda {
         String nombreProducto = scanner.nextLine();
         System.out.print("Ingresa la cantidad de stock que deseas añadir: ");
         int cantidad = scanner.nextInt();
+        scanner.nextLine();
 
         for (Maquillaje producto : productosMaquillaje) {
-            if (producto.getNombreProducto().equals(nombreProducto)) {
+            if (producto.getNombre().equals(nombreProducto)) {
                 producto.agregarStock(cantidad);
                 System.out.println("Stock añadido");
                 return;
             }
-            System.out.println("Producto no encontrado.");
         }
+        System.out.println("Producto no encontrado.");
     }
 
     public void disminuirStockMaquillaje() {
@@ -312,7 +297,7 @@ public class Tienda {
         scanner.nextLine();
 
         for (Maquillaje producto : productosMaquillaje) {
-            if (producto.getNombreProducto().equals(nombreProducto)) {
+            if (producto.getNombre().equals(nombreProducto)) {
                 producto.eliminarStock(cantidad);
                 System.out.println("Stock eliminado");
                 return;
@@ -326,5 +311,103 @@ public class Tienda {
         consultarProductosElectrodomestico();
         consultarProductosCaducidad();
         consultarProductosMaquillaje();
+    }
+
+    private Cliente buscarClientePorNombre(String nombre) {
+        for (Cliente cliente : clientes) {
+            if (cliente.esNombreIgual(nombre)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    public void realizarCompra() {
+        System.out.println("Ingresa el nombre del cliente: ");
+        String nombreCliente = scanner.nextLine();
+    
+        Cliente cliente = buscarClientePorNombre(nombreCliente);
+        if (cliente == null) {
+            System.out.println("Cliente no registrado. Debes registrarte antes de realizar una compra.");
+            return;
+        }
+    
+        consultarProductos();
+    
+        System.out.println("Ingresa el nombre del producto que deseas comprar: ");
+        String nombreProducto = scanner.nextLine();
+    
+        Producto producto = buscarProductoPorNombre(nombreProducto);
+    
+        if (producto == null) {
+            System.out.println("Producto no encontrado.");
+            return;
+        }
+    
+        System.out.println("Ingresa la cantidad que deseas comprar: ");
+        int cantidad = scanner.nextInt();
+        scanner.nextLine();
+    
+        if (producto.getStock() < cantidad) {
+            System.out.println("No hay suficiente stock disponible.");
+            return;
+        }
+    
+        Compra compra = new Compra(cliente);
+        compra.agregarProducto(producto, cantidad);
+        producto.eliminarStock(cantidad);
+    
+        System.out.println("Compra realizada con éxito:");
+        compra.mostrarDetalleCompra();
+    }
+    
+    private Producto buscarProductoPorNombre(String nombre) {
+        Producto producto = buscarProductoPorNombreLimpieza(nombre);
+        if (producto != null) return producto;
+    
+        producto = buscarProductoPorNombreElectrodomestico(nombre);
+        if (producto != null) return producto;
+    
+        producto = buscarProductoPorNombreAlimento(nombre);
+        if (producto != null) return producto;
+    
+        producto = buscarProductoPorNombreMaquillaje(nombre);
+        return producto;
+    }
+    
+    private Limpieza buscarProductoPorNombreLimpieza(String nombre) {
+        for (Limpieza producto : productosLimpieza) {
+            if (producto.getNombre().equalsIgnoreCase(nombre)) {
+                return producto;
+            }
+        }
+        return null;
+    }
+    
+    private Electrodomestico buscarProductoPorNombreElectrodomestico(String nombre) {
+        for (Electrodomestico producto : productosElectrodomestico) {
+            if (producto.getNombre().equalsIgnoreCase(nombre)) {
+                return producto;
+            }
+        }
+        return null;
+    }
+    
+    private Alimento buscarProductoPorNombreAlimento(String nombre) {
+        for (Alimento producto : productosAlimento) {
+            if (producto.getNombre().equalsIgnoreCase(nombre)) {
+                return producto;
+            }
+        }
+        return null;
+    }
+    
+    private Maquillaje buscarProductoPorNombreMaquillaje(String nombre) {
+        for (Maquillaje producto : productosMaquillaje) {
+            if (producto.getNombre().equalsIgnoreCase(nombre)) {
+                return producto;
+            }
+        }
+        return null;
     }
 }
