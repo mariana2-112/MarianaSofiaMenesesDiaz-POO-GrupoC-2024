@@ -41,8 +41,8 @@ public class Sistema {
             System.out.println("3.- Añadir a stock");
             System.out.println("4.- Disminuir Stock");
             System.out.println("5.- Listar clientes");
-            System.out.println("6.- Listar productos");
-            System.out.println("7.- Consultar productos por categoria");
+            System.out.println("6.- Consultar productos por categoria");
+            System.out.println("7.- Listar Productos");
             System.out.println("8.- Consultar compras");
             System.out.println("9.- Consultar total de productos y clientes");
             System.out.println("10.- Salir");
@@ -135,7 +135,7 @@ public class Sistema {
                         break;
                     }
 
-                case 5:
+                case 5: //Listar clientes
                     tienda.consultarClientes();
                     break;
                 case 6:
@@ -165,6 +165,20 @@ public class Sistema {
                     }
 
                     break;
+                    case 7:
+                    tienda.consultarProductos();
+                    break;
+                    case 8: //Comprar
+                    break;
+                    case 9: //Consultar Compras
+                    //Producto vendido, Precio del procuto,  comprador/cliente, cuando se realizo la compra
+                    break;
+                    case 10: //Eliminar productos y clientes
+                    break;
+                    default:
+                    System.out.println("INGRESE UNA OPCIÓN VALIDA");
+
+                    
 
             }
 

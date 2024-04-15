@@ -321,5 +321,10 @@ public class Tienda {
         System.out.println("Producto no encontrado.");
     }
 
-    
+    public void consultarProductos() {
+        consultarProductosLimpieza();
+        consultarProductosElectrodomestico();
+        consultarProductosCaducidad();
+        consultarProductosMaquillaje();
+    }
 }
