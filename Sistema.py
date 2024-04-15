@@ -113,14 +113,15 @@ class Sistema:
                 print("1.- Eliminar cliente")
                 print("2.- Eliminar producto")
                 print("3.- Regresar al menú principal")
-                opcion_eliminar = int(input("Ingresa la opción: "))
-
-                if opcion_eliminar == 1:
+                opcionEliminar = int(input("Ingresa la opcion: "))
+                if opcionEliminar == 1:
                     self.tienda.eliminar_cliente()
-                elif opcion_eliminar == 2:
+                elif opcionEliminar == 2:
                     self.tienda.eliminar_producto()
-                elif opcion_eliminar == 3:
-                    continue
+                elif opcionEliminar == 3:
+                    pass
+                else:
+                    print("Opción no válida.")
             elif opcion == 11:
                 print("Saliendo")
             else:

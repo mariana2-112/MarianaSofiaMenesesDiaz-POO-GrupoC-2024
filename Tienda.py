@@ -282,3 +282,84 @@ class Tienda:
         for compra in self.compras_realizadas:
             compra.mostrar_detalle_compra()
             print("--------------")
+
+    def eliminar_cliente(self):
+        self.consultar_clientes()
+        print("Ingresa el nombre del cliente que deseas eliminar: ")
+        nombre_cliente = input()
+        
+        cliente = self.buscar_cliente_por_nombre(nombre_cliente)
+        
+        if not cliente:
+            print("Cliente no registrado.")
+            return
+        
+        if self.tiene_compras_asociadas(cliente=cliente):
+            print("El cliente tiene compras asociadas y no puede ser eliminado.")
+            return
+        
+        self.clientes.remove(cliente)
+        print("Cliente eliminado con éxito.")
+
+    def eliminar_producto(self):
+        self.consultar_productos()
+        print("Ingresa el nombre del producto que deseas eliminar: ")
+        
+        nombre_producto = input()
+        
+        producto = None
+        
+        for prod in self.productos_limpieza:
+            if prod.get_nombre() == nombre_producto:
+                producto = prod
+                break
+
+        if not producto:
+            for prod in self.productos_electrodomestico:
+                if prod.get_nombre() == nombre_producto:
+                    producto = prod
+                    break
+
+        if not producto:
+            for prod in self.productos_alimento:
+                if prod.get_nombre() == nombre_producto:
+                    producto = prod
+                    break
+
+        if not producto:
+            for prod in self.productos_maquillaje:
+                if prod.get_nombre() == nombre_producto:
+                    producto = prod
+                    break
+
+        if not producto:
+            print("Producto no encontrado.")
+            return
+
+        # Verificar si el producto está vinculado a alguna compra
+        if self.tiene_compras_asociadas(producto=producto):
+            print("El producto está vinculado a una compra y no puede ser eliminado.")
+            return
+
+        # Eliminar el producto
+        if producto in self.productos_limpieza:
+            self.productos_limpieza.remove(producto)
+        elif producto in self.productos_electrodomestico:
+            self.productos_electrodomestico.remove(producto)
+        elif producto in self.productos_alimento:
+            self.productos_alimento.remove(producto)
+        elif producto in self.productos_maquillaje:
+            self.productos_maquillaje.remove(producto)
+
+        print("Producto eliminado con éxito.")
+
+    def tiene_compras_asociadas(self, cliente=None, producto=None):
+        if cliente:
+            for compra in self.compras_realizadas:
+                if compra.cliente == cliente:
+                    return True
+        elif producto:
+            for compra in self.compras_realizadas:
+                if producto in compra.productos:
+                    return True
+        return False
