@@ -16,8 +16,6 @@ class Tienda:
         self.compras_realizadas = []
         self.random = random.Random()
 
-    # Métodos de registro de clientes y productos
-
     def registrar_cliente(self):
         id_cliente = self.validar_id_cliente()
         nombre = input("Ingresa el nombre: ")
@@ -254,7 +252,6 @@ class Tienda:
         compra = Compra(cliente)
         compra.agregar_producto(producto, cantidad)
         
-        # Actualizar el stock del producto después de la compra
         producto.eliminar_stock(cantidad)
 
         print("Compra realizada con éxito:")
@@ -336,12 +333,10 @@ class Tienda:
             print("Producto no encontrado.")
             return
 
-        # Verificar si el producto está vinculado a alguna compra
         if self.tiene_compras_asociadas(producto=producto):
             print("El producto está vinculado a una compra y no puede ser eliminado.")
             return
 
-        # Eliminar el producto
         if producto in self.productos_limpieza:
             self.productos_limpieza.remove(producto)
         elif producto in self.productos_electrodomestico:
