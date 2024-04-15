@@ -1,8 +1,7 @@
 public class Electrodomestico extends Producto {
     private String voltaje;
 
-    public Electrodomestico(String nombre, double precio, String fechaImportacion, int stock,
-            String voltaje) {
+    public Electrodomestico(String nombre, double precio, String fechaImportacion, int stock, String voltaje) {
         super(nombre, precio, fechaImportacion, stock);
         this.voltaje = voltaje;
     }
@@ -12,6 +11,6 @@ public class Electrodomestico extends Producto {
     }
 
     public String getNombreProducto() {
-        return super.getNombre();  
+        return super.getNombre();
     }
 }

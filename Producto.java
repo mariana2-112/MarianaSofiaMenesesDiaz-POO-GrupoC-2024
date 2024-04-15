@@ -13,7 +13,6 @@ public class Producto {
         this.fechaImportacion = fechaImportacion;
         this.stock = stock;
         this.numeroSerie = CANTIDAD_PRODUCTOS += 1;
-        CANTIDAD_PRODUCTOS = CANTIDAD_PRODUCTOS += 1;
     }
 
     public void agregarStock(int cantidad) {
@@ -21,10 +20,10 @@ public class Producto {
     }
 
     public void eliminarStock(int cantidad) {
-        if (validarStock()) {
-            System.out.println("");
-        } else {
+        if (stock >= cantidad) {
             stock -= cantidad;
+        } else {
+            System.out.println("No hay suficiente stock.");
         }
     }
 
@@ -45,6 +44,6 @@ public class Producto {
     }
 
     public int getStock() {
-        return this.stock; // Asumiendo que 'stock' es el atributo que almacena la cantidad de stock.
+        return stock;
     }
 }

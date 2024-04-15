@@ -176,7 +176,7 @@ public class Sistema {
                     tienda.consultarCompras();
                     break;
                 case 10: // Eliminar productos y clientes
-                    System.out.println("ELIMINAR OPCIONES");
+                    System.out.println("ELIMINAR OPCIONES"); 
                     System.out.println("1.- Eliminar cliente");
                     System.out.println("2.- Eliminar producto");
                     System.out.println("3.- Regresar al menú principal");
